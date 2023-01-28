@@ -9,7 +9,10 @@ export class GifsService {
   private apiKey: string = 'mWfciPfOHbKkyHQBRmGrBPMXJeULNHyH'
   private _historial: string[] = [];
 
-  public get historial(){
+  // TODO cambiar any por su tipo correspondiente
+  public resultados: any[] = []
+
+  get historial(){
     /* Returning a copy of the array. */
     return [...this._historial]
   }
@@ -25,9 +28,10 @@ export class GifsService {
       this._historial = this._historial.splice(0,10)
     }
 
-    this.http.get('https://api.giphy.com/v1/gifs/search?api_key=mWfciPfOHbKkyHQBRmGrBPMXJeULNHyH&q=kakarot&limit=10&offset=0&rating=g&lang=en')
+    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=mWfciPfOHbKkyHQBRmGrBPMXJeULNHyH&q=${query}&limit=10&offset=0&rating=g&lang=en`)
     .subscribe((response: any) => {
-      console.log(response)
+      console.log(response.data)
+      this.resultados = response.data
     })
   }
 
