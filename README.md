@@ -92,3 +92,7 @@ l decorador de los servicios - > @Injectable
 - Creación de Servicios mediante CLI
 ng g s carpetaDondeQueremosCrearlo/services/nombreservicio --skip-tests
 
+- Realizar petición HTTP
+import {HttpClientModule} from '@angular/common/http'
+
+constructor(private http: HttpClient) { }
